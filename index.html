@@ -1,1 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiva Tours & Travels | Uttarakhand's Premier Travel Partner</title>
+    <meta name="description" content="Experience the divine Himalayas with Shiva Tours and Travels. Char Dham Yatra, Auli Skiing, Rishikesh Rafting, and Jim Corbett Safaris.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Tailwind CSS & Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'shiva-green': '#0F4C3A',     // Pine Green
+                        'shiva-lightGreen': '#1B8163', // Lighter foliage
+                        'shiva-saffron': '#FF9933',   // Spiritual Orange
+                        'shiva-ice': '#F0F9FF',       // Snow/Sky
+                        'shiva-rock': '#334155',      // Mountain Rock
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1598091383021-15ddea10925d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F4C3A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF9933;
+        }
+
+        /* Hide scrollbar utility */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-dark {
+            background: rgba(15, 76, 58, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Animation Keyframes */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-shiva-ice text-shiva-rock font-sans antialiased selection:bg-shiva-saffron selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-shiva-saffron rounded-full flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl md:text-2xl font-bold text-white tracking-wide drop-shadow-md">SHIVA<span class="text-shiva-saffron">.</span></span>
+                    <span class="text-[10px] text-white/90 uppercase tracking-widest">Tours & Travels</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-white hover:text-shiva-saffron font-medium text-sm transition-colors drop-shadow-md">Home</a>
+                <a href="#packages" class="text-white hover:text-shiva-saffron font-medium text-sm transition-colors drop-shadow-md">Packages</a>
+                <a href="#destinations" class="text-white hover:text-shiva-saffron font-medium text-sm transition-colors drop-shadow-md">Destinations</a>
+                <a href="#about" class="text-white hover:text-shiva-saffron font-medium text-sm transition-colors drop-shadow-md">About Us</a>
+                <a href="#contact" class="px-6 py-2 bg-shiva-saffron text-white rounded-full font-semibold hover:bg-white hover:text-shiva-saffron transition-all shadow-lg transform hover:-translate-y-1">Book Now</a>
+            </div>
+
+            <!-- Mobile Menu Btn -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-shiva-green/95 backdrop-blur-md border-t border-white/10 p-6 flex-col space-y-4 shadow-xl">
+            <a href="#home" class="text-white text-lg block border-b border-white/10 pb-2">Home</a>
+            <a href="#packages" class="text-white text-lg block border-b border-white/10 pb-2">Packages</a>
+            <a href="#destinations" class="text-white text-lg block border-b border-white/10 pb-2">Destinations</a>
+            <a href="#about" class="text-white text-lg block border-b border-white/10 pb-2">About Us</a>
+            <a href="#contact" class="bg-shiva-saffron text-center py-3 rounded text-white font-bold">Plan My Trip</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Parallax Background -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1548685913-fe6678babe8d?q=80&w=2800&auto=format&fit=crop" 
+                 class="w-full h-full object-cover" alt="Himalayas">
+            <!-- Overlay Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-shiva-green/90"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto px-6 text-center mt-20">
+            <div class="inline-block px-4 py-1 border border-white/30 rounded-full bg-white/10 backdrop-blur-sm mb-4 animate-float">
+                <span class="text-shiva-saffron font-bold text-xs uppercase tracking-widest">Devbhoomi Uttarakhand</span>
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-6 drop-shadow-2xl reveal">
+                Gateway to <br> <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-white to-shiva-ice">The Gods</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed reveal" style="transition-delay: 200ms;">
+                Experience the spiritual aura of Char Dham, the thrill of Auli, and the serenity of the Himalayas with Uttarakhand's most trusted travel partner.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal" style="transition-delay: 400ms;">
+                <a href="#packages" class="px-8 py-4 bg-shiva-saffron text-white font-bold rounded-full hover:bg-white hover:text-shiva-saffron transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    Explore Packages
+                </a>
+                <a href="#destinations" class="px-8 py-4 glass text-white font-bold rounded-full hover:bg-white/20 transition-all">
+                    View Destinations
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
+        </div>
+    </section>
+
+    <!-- Quick Stats Strip -->
+    <section class="relative z-20 -mt-20 px-6">
+        <div class="container mx-auto glass-dark rounded-xl p-8 shadow-2xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white divide-x divide-white/10">
+                <div class="reveal">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-shiva-saffron">10k+</p>
+                    <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Happy Yatris</p>
+                </div>
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-shiva-saffron">15+</p>
+                    <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Years Experience</p>
+                </div>
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-shiva-saffron">50+</p>
+                    <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Destinations</p>
+                </div>
+                <div class="reveal" style="transition-delay: 300ms;">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-shiva-saffron">24/7</p>
+                    <p class="text-xs uppercase tracking-widest opacity-80 mt-1">On-Trip Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Packages Section -->
+    <section id="packages" class="py-24 bg-shiva-ice">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-shiva-green font-bold text-xs uppercase tracking-widest">Curated Experiences</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-shiva-rock font-bold mt-2">Best Selling Packages</h2>
+                <div class="w-24 h-1 bg-shiva-saffron mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Package Card 1: Char Dham -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626083049187-5784d1a3c7dc?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Kedarnath" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-shiva-saffron text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Bestseller</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Chardham Yatra 2024</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 10 Days / 9 Nights</span>
+                            <span class="flex items-center"><i class="fas fa-hiking mr-2 text-shiva-green"></i> Moderate</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            A spiritual journey to Yamunotri, Gangotri, Kedarnath, and Badrinath. Includes luxury transport, accommodation, and VIP darshan assistance.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹28,500<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Card 2: Auli -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://uttarakhandtourism.gov.in/sites/default/files/2020-09/Auli.jpg" 
+                             alt="Auli Skiing" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Adventure</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Auli Skiing Paradise</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 4 Days / 3 Nights</span>
+                            <span class="flex items-center"><i class="fas fa-snowflake mr-2 text-shiva-green"></i> Easy</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            Experience the mini Switzerland of India. Package includes cable car ride, skiing lessons, bonfire nights, and stay at Clifftop resort.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹12,999<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Card 3: Rishikesh -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal" style="transition-delay: 200ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594916961817-5789f244a56e?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Rishikesh Rafting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-shiva-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Weekend</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Rishikesh Rafting & Camping</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 2 Days / 1 Night</span>
+                            <span class="flex items-center"><i class="fas fa-water mr-2 text-shiva-green"></i> Thrill</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            White water rafting on the Ganges, riverside jungle camping, evening Ganga Aarti, and bungee jumping (optional add-on).
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹3,500<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Card 4: Valley of Flowers -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Valley_of_Flowers_National_Park_1.jpg/1200px-Valley_of_Flowers_National_Park_1.jpg" 
+                             alt="Valley of Flowers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Trekking</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Valley of Flowers Trek</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 6 Days / 5 Nights</span>
+                            <span class="flex items-center"><i class="fas fa-hiking mr-2 text-shiva-green"></i> Moderate</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            A UNESCO World Heritage site. Witness millions of blooming alpine flowers. Includes trek guide, permits, and meals.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹14,500<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Card 5: Jim Corbett -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Jim Corbett" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Wildlife</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Jim Corbett Safari</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 3 Days / 2 Nights</span>
+                            <span class="flex items-center"><i class="fas fa-paw mr-2 text-shiva-green"></i> Family</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            Stay in luxury jungle resorts. Includes 2 Jeep Safaris (Dhikala/Bijrani zones), nature walk, and all meals.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹9,999<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Card 6: Honeymoon Special -->
+                <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 reveal" style="transition-delay: 200ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589136777351-94328224d4b3?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Nainital" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Romantic</div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white font-serif text-xl font-bold">Nainital & Mussoorie</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <span class="flex items-center"><i class="far fa-clock mr-2 text-shiva-green"></i> 5 Days / 4 Nights</span>
+                            <span class="flex items-center"><i class="fas fa-heart mr-2 text-shiva-green"></i> Relax</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm line-clamp-3">
+                            The Queen of Hills experience. Lake tours, candlelight dinner, flower decoration, and private cab for sightseeing.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-400">Starting from</span>
+                                <p class="text-lg font-bold text-shiva-green">₹18,000<span class="text-xs font-normal">/pp</span></p>
+                            </div>
+                            <button class="px-4 py-2 border border-shiva-green text-shiva-green rounded-lg hover:bg-shiva-green hover:text-white transition-colors text-sm font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Destinations Scroll -->
+    <section id="destinations" class="py-20 bg-shiva-green relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+             <i class="fas fa-om text-9xl text-white absolute top-10 left-10 transform -rotate-12"></i>
+             <i class="fas fa-mountain text-9xl text-white absolute bottom-10 right-10"></i>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex justify-between items-end mb-10 reveal">
+                <div>
+                    <span class="text-shiva-saffron font-bold text-xs uppercase tracking-widest">Explore</span>
+                    <h2 class="font-serif text-4xl text-white font-bold">Top Destinations</h2>
+                </div>
+                <div class="hidden md:flex space-x-2">
+                    <span class="text-xs text-white/50 self-center mr-2">Scroll to explore</span>
+                    <button onclick="scrollDestinations(-300)" class="bg-white/10 p-2 rounded-full hover:bg-shiva-saffron text-white transition-colors"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="scrollDestinations(300)" class="bg-white/10 p-2 rounded-full hover:bg-shiva-saffron text-white transition-colors"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div id="dest-container" class="flex overflow-x-auto gap-6 pb-12 hide-scroll snap-x snap-mandatory">
+                
+                <!-- Dest Card 1 -->
+                <div class="min-w-[280px] h-[350px] relative rounded-xl overflow-hidden shadow-2xl snap-center group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1593181829037-7a0916e7da82?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-serif font-bold">Kedarnath</h3>
+                        <p class="text-sm opacity-80 mt-1">Lord Shiva's Adobe</p>
+                    </div>
+                </div>
+
+                <!-- Dest Card 2 -->
+                <div class="min-w-[280px] h-[350px] relative rounded-xl overflow-hidden shadow-2xl snap-center group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1626621341139-e3271a9a8844?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-serif font-bold">Rishikesh</h3>
+                        <p class="text-sm opacity-80 mt-1">Yoga Capital</p>
+                    </div>
+                </div>
+
+                <!-- Dest Card 3 -->
+                <div class="min-w-[280px] h-[350px] relative rounded-xl overflow-hidden shadow-2xl snap-center group cursor-pointer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Badrinath_Temple_Uttarakhand.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-serif font-bold">Badrinath</h3>
+                        <p class="text-sm opacity-80 mt-1">Char Dham</p>
+                    </div>
+                </div>
+
+                <!-- Dest Card 4 -->
+                <div class="min-w-[280px] h-[350px] relative rounded-xl overflow-hidden shadow-2xl snap-center group cursor-pointer">
+                    <img src="https://www.euttaranchal.com/tourism/photos/mussoorie-photos-2792822.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-serif font-bold">Mussoorie</h3>
+                        <p class="text-sm opacity-80 mt-1">Queen of Hills</p>
+                    </div>
+                </div>
+
+                 <!-- Dest Card 5 -->
+                 <div class="min-w-[280px] h-[350px] relative rounded-xl overflow-hidden shadow-2xl snap-center group cursor-pointer">
+                    <img src="https://www.holidify.com/images/bgImages/TUNGNATH-CHOPTA.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-serif font-bold">Chopta</h3>
+                        <p class="text-sm opacity-80 mt-1">Mini Switzerland</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="text-shiva-green font-bold text-xs uppercase tracking-widest">Why Choose Shiva Travels?</span>
+                    <h2 class="font-serif text-4xl font-bold text-shiva-rock mt-2 mb-6">We Don't Just Plan Tours, <br> We Craft Memories.</h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Located in the heart of Devbhoomi, we are a team of local experts passionate about showcasing the true beauty of Uttarakhand. From rugged treks to spiritual yatras, we ensure safety, comfort, and authenticity.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                        <div class="flex items-start">
+                            <div class="bg-shiva-ice p-3 rounded-lg text-shiva-green mr-4">
+                                <i class="fas fa-shield-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-shiva-rock">100% Safe</h4>
+                                <p class="text-xs text-gray-500">Registered with Uttarakhand Tourism</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-shiva-ice p-3 rounded-lg text-shiva-green mr-4">
+                                <i class="fas fa-user-tie text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-shiva-rock">Local Guides</h4>
+                                <p class="text-xs text-gray-500">Expert knowledge of terrain</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-shiva-ice p-3 rounded-lg text-shiva-green mr-4">
+                                <i class="fas fa-rupee-sign text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-shiva-rock">Best Prices</h4>
+                                <p class="text-xs text-gray-500">No hidden costs, direct booking</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-shiva-ice p-3 rounded-lg text-shiva-green mr-4">
+                                <i class="fas fa-utensils text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-shiva-rock">Hygienic Meals</h4>
+                                <p class="text-xs text-gray-500">Pure veg options available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal" style="transition-delay: 200ms;">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-shiva-saffron rounded-full opacity-20 animate-pulse"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-shiva-green rounded-full opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1505881402582-c51632007299?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Trekker" class="relative rounded-2xl shadow-2xl z-10 w-full object-cover h-[500px]">
+                    <div class="absolute bottom-10 -left-10 bg-white p-6 rounded-lg shadow-xl z-20 hidden md:block border-l-4 border-shiva-saffron">
+                        <div class="flex items-center gap-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full">
+                            <div>
+                                <p class="text-sm italic text-gray-600">"The best Kedarnath trip ever! <br> Thanks to Atul ji for the arrangements."</p>
+                                <p class="text-xs font-bold text-shiva-rock mt-1">- Rahul Sharma, Delhi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Footer -->
+    <footer id="contact" class="bg-shiva-rock text-white pt-20 pb-10 relative overflow-hidden">
+        <!-- Overlay Texture -->
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="bg-shiva-green rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between shadow-2xl mb-20 transform -translate-y-24">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Ready for the Mountains?</h2>
+                    <p class="text-white/80 max-w-md">Get a customized itinerary for your dream trip to Uttarakhand today.</p>
+                </div>
+                <form class="flex flex-col sm:flex-row gap-4 w-full md:w-auto" onsubmit="event.preventDefault(); alert('Request sent! We will call you shortly.');">
+                    <input type="text" placeholder="Your Phone Number" class="px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-shiva-saffron w-full sm:w-64">
+                    <button type="submit" class="bg-shiva-saffron hover:bg-white hover:text-shiva-saffron text-white font-bold py-4 px-8 rounded-full transition-all shadow-lg">Request Callback</button>
+                </form>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-12 border-b border-white/10 pb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-shiva-saffron rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-mountain text-xs"></i>
+                        </div>
+                        <span class="font-serif text-xl font-bold">SHIVA Tours.</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 max-w-sm">
+                        Your trusted companion for spiritual and adventurous journeys in Uttarakhand. Registered with the Tourism Board.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-shiva-saffron transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-shiva-saffron transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-shiva-saffron transition-colors"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-shiva-saffron">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Char Dham Yatra</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Valley of Flowers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Rishikesh Camping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Car Rentals</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Helicopter Bookings</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-shiva-saffron">Contact Us</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-shiva-green"></i>
+                            <span>Haridwar Main Road, Uttarakhand, India - 249401</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-shiva-green"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-shiva-green"></i>
+                            <span>book@shivatours.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Shiva Tours & Travels Uttarakhand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Sticky Navbar with Glass Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-dark', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('glass-dark', 'shadow-lg');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // Horizontal Scroll for Destinations
+        function scrollDestinations(amount) {
+            const container = document.getElementById('dest-container');
+            container.scrollBy({
+                left: amount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Intersection Observer for "Reveal on Scroll" animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
